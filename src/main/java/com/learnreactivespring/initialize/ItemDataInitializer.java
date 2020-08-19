@@ -25,7 +25,8 @@ public class ItemDataInitializer implements CommandLineRunner {
                 new Item(null,"Samsung TV",400.0),
                 new Item(null,"Apple watch",200.0),
                 new Item(null,"Macbook",1200.0),
-                new Item("ABC","NewBOOK",1200.0));
+                new Item("ABC","NewBOOK",1200.0),
+                new Item("DCF","NewBOOK2",1300.0));
         return itemList;
     }
     private void initialDataSetup() {
@@ -34,8 +35,10 @@ public class ItemDataInitializer implements CommandLineRunner {
                 .flatMap(itemReactiveRepository::save)
                 .thenMany(itemReactiveRepository.findAll())
                 .subscribe(item->{
-                    System.out.println("Item inserted :" + item);
+                    System.out.println("thread:" + Thread.currentThread().getName() +  "  Item inserted :" + item);
                 });
+
+
 
 
     }

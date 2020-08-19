@@ -17,6 +17,8 @@ public class ItemController {
 
     @GetMapping(ItemConstants.ITEM_END_POINT_V1)
     public Flux<Item> getAllItems() {
-         return itemReactiveRepository.findAll();
+        System.out.println("thread:" + Thread.currentThread().getName());
+        Flux<Item> items = itemReactiveRepository.findAll().log();
+        return items;
     }
 }
